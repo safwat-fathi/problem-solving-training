@@ -14,16 +14,22 @@ function maxArea(height = []) {
   for (let i = 0; i < height.length; i++) {
     const line = height[i];
 
-    if (i !== height.indexOf(firstLine) && i !== height.indexOf(lastLine)) {
-      if (line > firstLine) {
-        console.log("larger than first line:", line);
-        firstLine = line;
-      }
-      if (line > firstLine) {
-        console.log("larger than last line:", line);
-        lastLine = line;
-      }
+    console.log("current first line:", firstLine);
+    console.log("current last line:", lastLine);
+    console.log(
+      "curr width:",
+      height.indexOf(lastLine) - height.indexOf(firstLine)
+    );
+
+    // if (i !== height.indexOf(firstLine) && i !== height.indexOf(lastLine)) {
+    if (line > firstLine && i < height.indexOf(lastLine)) {
+      // console.log("larger than first line:", line);
+      firstLine = line;
     }
+    if (line > lastLine && i > height.indexOf(firstLine)) {
+      lastLine = line;
+    }
+    // }
 
     // if (
     //   line > firstLine &&
@@ -45,7 +51,9 @@ function maxArea(height = []) {
   }
 
   console.log(firstLine);
+  console.log(height.indexOf(firstLine));
   console.log(lastLine);
+  console.log(height.indexOf(lastLine));
 }
 
 const testCase0 = [1, 8, 6, 2, 5, 4, 8, 3, 7];
